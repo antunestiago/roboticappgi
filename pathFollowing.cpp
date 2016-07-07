@@ -95,7 +95,7 @@ int main(int argc, char **argv){
 	double u=0.0,w=0.0, alpha = 0.0;
 	double a=0.0, fb1, fb2;
 	double Xp,Yp,thetaP;
-	double MPontos [3][3] = {{1,0,0},{1,1,pi/2},{2,2,0}};
+	double MPontos [3][3] = {{1,0,0},{1,1,pi/2},{2,2,0}}; //given points to follow
 
 	for(int i=0; i<3;i++){
 
