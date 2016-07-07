@@ -12,18 +12,12 @@ double thetaO = 0.0;
 double pi = 3.14159;
 
 void chatterCallback(const nav_msgs::Odometry::ConstPtr& msg){
-	//ROS_INFO("passou");
-	
-	//ROS_INFO("Seq: [%d]", msg->header.seq);
-	//ROS_INFO("Position-> x: [%f], y: [%f], z: [%f]", msg->pose.pose.position.x,msg->pose.pose.position.y, msg->pose.pose.position.z);
-	//ROS_INFO("Orientation-> x: [%f], y: [%f], z: [%f], w: [%f]", msg->pose.pose.orientation.x, msg->pose.pose.orientation.y, 
-//msg->pose.pose.orientation.z, msg->pose.pose.orientation.w);
-//	ROS_INFO("Vel-> Linear: [%f], Angular: [%f]", msg->twist.twist.linear.x,msg->twist.twist.angular.z);
+	ROS_INFO("Vel-> Linear: [%f], Angular: [%f]", msg->twist.twist.linear.x,msg->twist.twist.angular.z);
 
 	posx = msg->pose.pose.position.x;
 	posy = msg->pose.pose.position.y;	
 	thetaO = tf::getYaw(msg->pose.pose.orientation);
-//	thetaO = thetaO*180/pi;
+
 }
 
 
@@ -48,8 +42,7 @@ int main(int argc, char **argv){
 	
 
 	while(ros::ok()){ //loop ate pressionar ctrl+C
-			//ROS_INFO("xpositionDentroDoWhil: [%f]",posx);	
-			//ROS_INFO("passouasdeeeWhile");
+		
 		Ex = Xp - posx;
 		Ey = Yp - posy;
 
@@ -79,13 +72,12 @@ int main(int argc, char **argv){
 		vel_msg.angular.y = 0;
 		vel_msg.angular.z = w; //seta o valor de rotação do robo p3at
 
-		//if(chatterCallback->posx>0.7){break;}
+	
 		velocity_publisher.publish(vel_msg);
 				
 		ros::spinOnce();
 	}
-	//fica fazendo loop ate apertar ctrl+c
-	
+
 	ros::spin();
 	ROS_INFO("passou2323");
 	return 0;
